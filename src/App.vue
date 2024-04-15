@@ -1,10 +1,8 @@
 <script setup>
-import FormInitVue from './components/FormComponent.vue';
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 import TopBar from './components/TopBar.vue';
 import FormComponent from './components/FormComponent.vue';
 import CardPhoto from './components/CardPhoto.vue';
+import BarraEstado from './components/BarraEstado.vue';
 
 
 
@@ -15,16 +13,19 @@ export default {
   components: { CardPhoto },
   data() {
     return {
+      sol : 0,
       message: 'This is some text',
       linkServicio : "https://api.nasa.gov/mars-photos/api/v1/rovers/",
       linkConsulta : "",
       arrayPresentacionPhotos : [],      
-      presentacionFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" }
+      presentacionFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" },
+      mostrarBarraEstado : false
     };
   },
   methods:{
     receiveValues(x, y, z)
     {
+      this.sol=y;
     console.log(`los valores escuchados en appVue son ${x} , ${y} , ${z}`)
     let elLink=this.crearLinkConsulta(x,y,z)
     console.log(`el link creado es ${this.linkConsulta}`)
@@ -51,6 +52,9 @@ export default {
                         unaPresentacion.rover=element.rover.name
                         unaPresentacion.camera=element.camera.name                        
                     this.arrayPresentacionPhotos.push(unaPresentacion)})
+                    if (this.arrayPresentacionPhotos.length!=0){
+                      this.mostrarBarraEstado=true
+                    }
                    // imprimirPhotos(arrayPresentacionPhotos) 
         })
         
@@ -75,7 +79,7 @@ export default {
  :rover-name="x.rover"
  :camera-name="x.camera" />   
   </div>
- 
+  <barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show="mostrarBarraEstado" />
   </main>
 </template>
 
