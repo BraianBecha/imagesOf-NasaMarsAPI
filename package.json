@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "vite build && git subtree push --prefix dist origin gh-pages" 
+    "deploy": "vite build && git subtree push --prefix d-dist origin gh-pages" 
   },
   "dependencies": {
     "vue": "^3.4.21"
