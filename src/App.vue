@@ -3,14 +3,12 @@ import TopBar from './components/TopBar.vue';
 import FormComponent from './components/FormComponent.vue';
 import CardPhoto from './components/CardPhoto.vue';
 import BarraEstado from './components/BarraEstado.vue';
-
-
-
+import Detalle from './components/detalle.vue';
 </script>
 
 <script>
 export default {
-  components: { CardPhoto },
+  components: { CardPhoto, Detalle },
   data() {
     return {
       sol : 0,
@@ -19,7 +17,10 @@ export default {
       linkConsulta : "",
       arrayPresentacionPhotos : [],      
       presentacionFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" },
-      mostrarBarraEstado : false
+      mostrarBarraEstado : false,
+      lookState: 'contenedorDeFotos',
+      detalleFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" },
+      
     };
   },
   methods:{
@@ -58,6 +59,22 @@ export default {
                    // imprimirPhotos(arrayPresentacionPhotos) 
         })
         
+},
+
+verEnDetalle(x){
+
+  console.log(`se llama a verEnDetalle con los valores ${x}`)
+
+  this.detalleFoto = this.arrayPresentacionPhotos.find((element => element.id == x))
+
+  console.log(`se halla un elemento del día ${this.detalleFoto.earth_date}`)
+
+
+   this.lookState= 'detalleFoto'
+
+},
+volverAGrid(){
+  this.lookState='contenedorDeFotos'
 }
 
 }
@@ -71,30 +88,48 @@ export default {
  <main>
   <form-component @send-values="receiveValues" />
 
-  <div class="contenedorDeFotos">
+
+ 
+<div>
+  <Transition mode="out-in">
+  <div v-if = "lookState === 'detalleFoto' "  key="detalleFoto"> 
+    <detalle :id-photo="detalleFoto.id" 
+              :imgSrc="detalleFoto.imgSrc"
+              :earth-date="detalleFoto.earth_date"
+              :rover-name="detalleFoto.rover"
+              :camera-name="detalleFoto.camera"
+              textoBtn='Back'
+              @pedirVolver="volverAGrid"
+              
+ ></detalle>
+
+
+</div>
+</Transition>
+<Transition mode="out-in">
+
+  <div v-if = "lookState === 'contenedorDeFotos'" key="contenedorDeFotos" class="contenedorDeFotos">
  <card-photo v-for="x in arrayPresentacionPhotos" :key="x.id"
  :id-photo="x.id"
  :img-src="x.imgSrc"
  :earth-date="x.earth_date"
  :rover-name="x.rover"
- :camera-name="x.camera" />   
+ :camera-name="x.camera"
+ @verEnDetalle="verEnDetalle"
+  />   
   </div>
-  <barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show="mostrarBarraEstado" />
-  </main>
+</Transition>
+</div>
+
+
+<barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show='mostrarBarraEstado' /> <!-- elimino el this en n-sol y n-photos -->
+
+
+
+</main>
 </template>
 
 <style scoped>
-
-.contenedorDeFotos{
-    display : flex ;
-    flex-direction : column ;
-    justify-content: center;
-    
-  place-items: center;
-    justify-content:space-between;
-    max-width: 95vw;
-    margin: 20px;
-}
 
 @media (min-width: 1024px) {
   header {
@@ -106,6 +141,45 @@ export default {
   .logo {
     margin: 0 2rem 0 0;
   }
-
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity 5s;
 }
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+} 
+}
+
 </style>
+
+<style>
+  .v-enter-active {
+    animation: slideIn 2s;
+  }
+  @keyframes slideIn {
+    from {
+      translate: -200px 0;
+      opacity: 0;
+    }
+    to {
+      translate: 0 0;
+      opacity: 1;
+    }
+  }
+  .v-leave-active {
+    animation: slideOut 0.5s;
+  }
+  @keyframes slideOut {
+    from {
+      translate: 0 0;
+      opacity: 1;
+    }
+    to {
+      translate: 200px 0;
+      opacity: 0;
+    }
+  }
+ 
+</style>  

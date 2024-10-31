@@ -1,7 +1,6 @@
 <script setup>
 import BotonV from './botonV.vue';
 </script>
-
 <template>
     <div class="tarjetaFoto">
    <img :src="imgSrc">
@@ -11,11 +10,13 @@ import BotonV from './botonV.vue';
        <li>Earth date: {{ earthDate }} </li>
        <li>Rover name: {{ roverName }}</li>
        <li>Camera: {{ cameraName }}   </li>
+       
+       <li>Camera: {{ textoBtn }}   </li>
    </ol>
    </div> 
    
-<boton-v textoBoton="View"  @click="verEnDetalle">  </boton-v>    
-<boton-v textoBoton="Download" >  </boton-v>      
+<boton-v :textoBoton=this.textoBtn @click="pedirVolver"></boton-v> 
+       
 </div>
 </template>
 
@@ -24,10 +25,10 @@ import BotonV from './botonV.vue';
 
      
   export default {
-    props: ['idPhoto','imgSrc', 'earthDate', 'roverName', 'cameraName'],
+    props: ['idPhoto','imgSrc', 'earthDate', 'roverName', 'cameraName','textoBtn'],
     methods: {
-        verEnDetalle() {
-            this.$emit('ver-en-detalle', this.idPhoto);
+        pedirVolver() {
+            this.$emit('pedir-volver', this.idPhoto);
         }
     }
   }
@@ -38,15 +39,16 @@ import BotonV from './botonV.vue';
 <style>
 
 
-.tarjetaFoto img {
-  width:100%; height:100%;
+.tarjetaFoto img{
+ width: 100%;
+ height: 100%;
   object-fit: contain;
   z-index: 2;
-
 }
+
+
 .tarjetaFoto{  
-  /*  
-  object-fit: contain;   */
+  
   display:flex;
   flex-direction: column;
     border-width : 2px;
@@ -57,6 +59,7 @@ import BotonV from './botonV.vue';
     background-color: var(--claro);
 
 }
+
 .listaDescriptiva{  
   position: relative;
     display: flex;

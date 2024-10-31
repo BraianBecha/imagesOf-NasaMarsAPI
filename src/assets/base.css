@@ -100,3 +100,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.headerBar{
+  width: 100vw;
+  height: 7vh;
+  background-color: var(--azul);
+  display: flex;
+  justify-content: center;
+  color: var(--claro);
+  padding: 2vh;
+  position: fixed top;
+}
+

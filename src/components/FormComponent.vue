@@ -8,7 +8,7 @@
             <ul>
               <li>
                 <label for="key">License key is needed:    </label>
-                <input v-model="licenseKey" id="key" type="text" value="{{this.licnseKey}}"/>  <button @:click="colocarDemoKey('DEMO_KEY')">use Demo-key</button>
+                <input v-model="licenseKey" id="key" type="text" value="{{this.licenseKey}}"/>  <button @:click="colocarDemoKey('DEMO_KEY')">use Demo-key</button>
                 
               </li>              
               <li>
@@ -28,10 +28,11 @@
                                               
                         <input v-model="rover" type="radio" name="rover" value="perseverance">Perseverance 
                       
-                        <div>
-                        <button  @click="sendValues" type="submit" name="Submit">See photos</button>
-                      </div>
+                       
+                      
                 </div>
+                
+                <button class="botonSubmit"  @click="sendValues" type="submit" name="Submit">See photos</button>
               </li>                             
             </ul>
            
@@ -79,6 +80,7 @@ export default {
 
 </script>
 <style>
+
 @import '/src/assets/base.css';
 
 
@@ -110,7 +112,7 @@ export default {
 #formInit{
   display: flex;
   justify-content: center;
-  margin: 10%;
+  margin: 5%;
 }
 
 button{

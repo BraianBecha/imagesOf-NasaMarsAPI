@@ -17,6 +17,84 @@ a,
   padding: 3px;
 }
 
+@media (max-width: 600px) {
+
+  .headerBar{
+    width: 100vw;
+    height: 15vh;
+    background-color: var(--azul);
+    display: flex;
+    justify-content: center;
+    color: var(--claro);
+    padding: 2vh;
+    
+}
+
+#form1{
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  border-color: var(--color-border);
+  border-radius: 15px;
+  /*margin: 0px;
+  padding: 0px; */
+}
+
+#form1 button{    
+  border-radius: 5px;
+  margin: 0;
+}
+#form1 .select{
+  display: flex;
+  flex-direction: row;    
+  justify-content: space-between;
+
+}
+#formInit{
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+button{
+  background-color: var(--violeta);
+  color: var(--claro);    
+  border-radius: 10px;
+  padding: 7px;
+  margin: 3px;
+}
+.botonSubmit{
+  padding: 0.5em;
+  position: inherit;
+}
+ol{
+ 
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+
+
+}
+li{
+  max-width: 90vw;
+ border: 2px solid var(--color-border-hover);
+ border-radius: 10px ;
+ padding: 10px;
+ list-style: none;
+ background-color: var(--claro);
+}
+
+
+ul {
+ list-style: none;
+ display: block;
+ margin: 0px;
+ padding: 1em;
+ border: 0px;
+}
+}
+
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
@@ -29,11 +107,39 @@ a,
 
   
   }
-
+/*
   #app {
     display: flex;
     justify-content: center;
     flex-direction: column;
+  }*/
+
+  .contenedorDeFotos{
+    
+   display: grid;
+   grid-template-columns: repeat(3, auto);    
+   margin: 20px;
+   max-width: 95vw;
   }
+
+  .v-enter-from {
+    opacity: 0;
+    translate: -1000px 0;
+  }
+  .v-enter-to {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .v-leave-from {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .v-leave-to {
+    opacity: 0;
+    translate: 100px 0;
+  }
+
+
+
 }
 
