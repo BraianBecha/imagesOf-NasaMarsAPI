@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-   base: '//braianbecha.github.io/imagesOf-NasaMarsAPI/',
+   base: '/imagesOf-NasaMarsAPI/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
