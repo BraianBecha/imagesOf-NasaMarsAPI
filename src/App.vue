@@ -11,7 +11,7 @@ export default {
   components: { CardPhoto, Detalle },
   data() {
     return {
-      sol : 0,
+      sol : null,
       message: 'This is some text',
       linkServicio : "https://api.nasa.gov/mars-photos/api/v1/rovers/",
       linkConsulta : "",

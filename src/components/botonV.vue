@@ -9,7 +9,6 @@ export default {
     <button class="boton1">{{ textoBoton }} </button>
 </template>
 <style>
-@import url(//src/assets/base.css);
 @import url(/src/assets/main.css);
 
 .boton1{   
