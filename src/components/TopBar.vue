@@ -3,6 +3,6 @@
     </div>
 </template>
 <style scoped>
-@import '/src/assets/main.css'
+@import '/src/assets/main.css';
 
 </style>
