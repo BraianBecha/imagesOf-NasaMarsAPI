@@ -11,9 +11,9 @@ export default defineConfig({
   ],
    base: '/imagesOf-NasaMarsAPI/',
   resolve: {
-    alias: {
+   /* alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    }*/
   },
   build: {
     sourcemap: true 
