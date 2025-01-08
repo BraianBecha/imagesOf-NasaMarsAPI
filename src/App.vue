@@ -1,4 +1,4 @@
-<script setup>
+<script setup >
 import TopBar from './components/TopBar.vue';
 import FormComponent from './components/FormComponent.vue';
 import CardPhoto from './components/CardPhoto.vue';
@@ -16,16 +16,20 @@ export default {
       linkServicio : "https://api.nasa.gov/mars-photos/api/v1/rovers/",
       linkConsulta : "",
       arrayPresentacionPhotos : [],      
-      presentacionFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" },
+      presentacionFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :""},
       mostrarBarraEstado : false,
       lookState: 'contenedorDeFotos',
-      detalleFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :"" },
+      detalleFoto : {id:0 , imgSrc:"" , earth_date:"" , rover:"" , camera :""},
       
     };
   },
   methods:{
     receiveValues(x, y, z)
     {
+      if (y === null || y === undefined) {
+    console.error("El valor de 'sol' es inválido:", y);
+    return; 
+  }
       this.sol=y;
     console.log(`los valores escuchados en appVue son ${x} , ${y} , ${z}`)
     let elLink=this.crearLinkConsulta(x,y,z)
@@ -43,8 +47,15 @@ export default {
  buscarFotos(x){
   this.arrayPresentacionPhotos=[];
   fetch(x)
-.then(z=>z.json())
-        .then((y)=> {console.log(`y es ${y} la cantidad de fotos es ${y.photos.length}`)  
+.then(z=>z.json() )
+        .then((y)=> {
+          
+          if (!y || !y.photos || !Array.isArray(y.photos)) {
+      console.error("Respuesta inesperada de la API:", y);
+      return;
+    }
+          
+          console.log(`y es ${y} la cantidad de fotos es ${y.photos.length}`)  
         y.photos.forEach(element => { 
           let unaPresentacion=Object.create(this.presentacionFoto)
                         unaPresentacion.id=element.id
@@ -121,9 +132,10 @@ volverAGrid(){
 </Transition>
 </div>
 
+<!--
+<barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show='mostrarBarraEstado' /> 
 
-<barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show='mostrarBarraEstado' /> <!-- elimino el this en n-sol y n-photos -->
-
+-->
 
 
 </main>
