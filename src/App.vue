@@ -26,6 +26,10 @@ export default {
   methods:{
     receiveValues(x, y, z)
     {
+      if (y === undefined || y === null) {
+    console.error('El valor de sol es inválido');
+    return;
+  }
       this.sol=y;
     console.log(`los valores escuchados en appVue son ${x} , ${y} , ${z}`)
     let elLink=this.crearLinkConsulta(x,y,z)
