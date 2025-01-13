@@ -48,7 +48,15 @@ export default {
   this.arrayPresentacionPhotos=[];
   fetch(x)
 .then(z=>z.json())
-        .then((y)=> {console.log(`y es ${y} la cantidad de fotos es ${y.photos.length}`)  
+        .then((y)=> {
+          
+          if (!y.photos) {
+        console.error('La respuesta no contiene fotos');
+        return;
+      }
+          
+          
+          console.log(`y es ${y} la cantidad de fotos es ${y.photos.length}`)  
         y.photos.forEach(element => { 
           let unaPresentacion=Object.create(this.presentacionFoto)
                         unaPresentacion.id=element.id
