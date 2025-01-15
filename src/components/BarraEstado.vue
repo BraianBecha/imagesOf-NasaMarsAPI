@@ -8,7 +8,7 @@
   }
 </script>
   <template>
-    <div id="barraEstado">{{nPhotos}} photos recorded in {{ nSol }} Sol </div>
+    <div id="barraEstado">{{nPhotos || 0 }} photos recorded in {{ nSol || 0}} Sol </div>
   </template>
 
 
