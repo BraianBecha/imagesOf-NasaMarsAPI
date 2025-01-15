@@ -7,7 +7,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
    
   plugins: [vue()],
-  base: 'https://BraianBecha/imagesOf-NasaMarsAPI'
+  base: 'https://BraianBecha/imagesOf-NasaMarsAPI/index.html'
   ,
   resolve: {
     alias: {
