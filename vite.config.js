@@ -5,10 +5,10 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-   base: 'https://github.com/BraianBecha/imagesOf-NasaMarsAPI',
-  plugins: [
-    vue(),
-  ],
+   
+  plugins: [vue()],
+  base: 'https://BraianBecha/imagesOf-NasaMarsAPI'
+  ,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
