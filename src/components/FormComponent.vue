@@ -55,6 +55,7 @@
 
 
 <script>
+console.log("funciona FormComponent")
 export default { 
   data(){
     return{

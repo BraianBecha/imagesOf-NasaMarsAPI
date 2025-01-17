@@ -7,6 +7,7 @@ import Detalle from './components/detalle.vue';
 </script>
 
 <script>
+console.log("funciona AppVue")
 export default {
   components: { CardPhoto, Detalle },
   data() {
@@ -134,7 +135,7 @@ volverAGrid(){
 </div>
 
 
-<barra-estado :n-sol='this.sol' :n-photos='this.arrayPresentacionPhotos.length' v-show='mostrarBarraEstado' /> <!-- elimino el this en n-sol y n-photos -->
+<!-- <barra-estado :n-sol='sol' :n-photos='arrayPresentacionPhotos.length' v-show='mostrarBarraEstado' />  elimino el this en n-sol y n-photos -->
 
 
 
